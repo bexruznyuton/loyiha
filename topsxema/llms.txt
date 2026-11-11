@@ -1,0 +1,35 @@
+# Top Sxema
+
+> Top Sxema (topsxema.uz) — Instagram'da ko'proq ko'rish va obunachi yig'ish uchun sxemalar, haftalik xeshteglar, Reels heshteglarini yuklab olish va AI video tahlilini beradigan bepul Telegram bot. Bot: @Top_sxema_instagrambot. Asosiy auditoriya — O'zbekistondagi Instagram blogerlari va kontent yaratuvchilar. Interfeys tillari: o'zbek, rus, ingliz.
+
+Top Sxema — Telegram ichida ishlaydi: ilova o'rnatish yoki ro'yxatdan o'tish shart emas. Foydalanuvchi botni ochib, menyudan kerakli bo'limni tanlaydi.
+
+## Imkoniyatlar
+
+- Haftalik xeshteg: har hafta yangilanadigan xeshteg, bir bosishda nusxalanadi.
+- Heshteg yuklash: Instagram Reels havolasi yuborilsa, post matni (caption) va heshteglari bir necha soniyada qaytariladi.
+- AI video tahlil: video sun'iy intellekt yordamida baholanadi va ko'proq ko'rish uchun aniq tavsiyalar beriladi. Asosiy tahlil bepul, kengaytirilgan tahlil — pullik paketlar orqali.
+- Algoritm sxemalari: Instagram algoritmi va Reels'ni tavsiyalarga chiqarish bo'yicha amaliy sxemalar.
+
+## Narx
+
+- Sxemalar, haftalik xeshteglar va Reels heshteglarini yuklab olish — bepul.
+- Kengaytirilgan AI video tahlili — pullik paketlar.
+
+## Havolalar
+
+- [Sayt](https://topsxema.uz/): rasmiy sayt (o'zbekcha)
+- [Сайт на русском](https://topsxema.uz/ru/): rasmiy sayt (ruscha)
+- [Telegram bot](https://t.me/Top_sxema_instagrambot): @Top_sxema_instagrambot — xizmatning o'zi
+- [Telegram kanal](https://t.me/Top_sxema_rek12): yangiliklar va sxemalar
+- [Yordam](https://t.me/soqaliy): qo'llab-quvvatlash xizmati
+
+## Кратко на русском
+
+Top Sxema (Топ Схема, topsxema.uz) — бесплатный Telegram-бот @Top_sxema_instagrambot для роста в Instagram: хэштег недели, получение текста и хэштегов из любого Reels по ссылке, AI-анализ видео с рекомендациями и практичные схемы алгоритма. Работает прямо в Telegram, без регистрации. Базовые функции бесплатны, расширенный AI-анализ — платные пакеты. Не связан с Instagram или Meta.
+
+## Eslatma
+
+Top Sxema mustaqil xizmat; Instagram yoki Meta bilan bog'liq emas.
+
+Ma'lumot holati: 2026-10-25.

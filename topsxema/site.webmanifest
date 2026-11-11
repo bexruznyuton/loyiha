@@ -1,0 +1,14 @@
+{
+  "name": "Top Sxema",
+  "short_name": "Top Sxema",
+  "description": "Instagram uchun bepul sxemalar, haftalik xeshteglar va AI video tahlili — Telegram bot orqali.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "uz",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

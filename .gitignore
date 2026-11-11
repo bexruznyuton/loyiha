@@ -1,0 +1,42 @@
+# Dependencylar
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# Build natijalari
+dist/
+backups/
+*.tgz
+*.tar.gz
+*.zip
+
+# Loglar
+logs/
+*.log
+
+# Maxfiy fayllar (hech qachon commit qilinmasin)
+.env
+.env.*
+!.env.example
+*.session
+*.session-journal
+*.pem
+*.key
+
+# Ma'lumotlar / holat fayllari
+*.db
+*.sqlite
+users.json
+offset.txt
+meta.json
+analytics*.json
+video_analytics.json
+limit_config.json
+paid_used.json
+fallback_alert_state.json
+saveasbot-sessions/
+
+# Tizim
+.DS_Store
+Thumbs.db

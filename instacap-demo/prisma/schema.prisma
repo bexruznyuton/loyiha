@@ -1,0 +1,621 @@
+// Insta Growth Manager — Marketplace schema
+// Generator: Prisma Client, datasource: PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =========================================================
+// IDENTITY
+// =========================================================
+
+enum UserRole {
+  USER
+  OWNER     // mashhur akkaunt egasi
+  ADMIN
+}
+
+enum Language {
+  uz
+  ru
+  en
+}
+
+model User {
+  id                     Int       @id @default(autoincrement())
+  telegramId             BigInt    @unique @map("telegram_id")
+  firstName              String    @map("first_name")
+  lastName               String    @default("") @map("last_name")
+  username               String    @default("")
+  photoUrl               String    @default("") @map("photo_url")
+  language               Language  @default(uz)
+  role                   UserRole  @default(USER)
+  surveyCompleted        Boolean   @default(false) @map("survey_completed")
+  webappSurveyCompleted  Boolean   @default(false) @map("webapp_survey_completed")
+  // Admin akkaunt-egasi bilan anonim chatda "bloklash" tugmasini bosgan
+  // bo'lsa — bu foydalanuvchi endi admin'ga javob yoza olmaydi.
+  blockedFromAdminChat   Boolean   @default(false) @map("blocked_from_admin_chat")
+  // Vaqtinchalik blok (masalan nakrutka uchun 1 hafta) — shu vaqtgacha
+  // marketplace, hamyon va atmetka API'lari 403 qaytaradi.
+  bannedUntil            DateTime? @map("banned_until")
+  banReason              String    @default("") @map("ban_reason")
+  createdAt              DateTime  @default(now()) @map("created_at")
+  lastSeen               DateTime  @default(now()) @map("last_seen")
+
+  wallet           Wallet?
+  adAccounts       AdAccount[]
+  ordersAsBuyer    Order[]           @relation("buyer")
+  captionHistory   CaptionHistory[]
+  notifications    Notification[]
+  strikes          Strike[]
+  payouts          Payout[]
+  tagSubmissions   TagSubmission[]
+
+  @@map("users")
+}
+
+// =========================================================
+// EXISTING — caption tool + surveys (preserved)
+// =========================================================
+
+model CaptionHistory {
+  id         Int       @id @default(autoincrement())
+  userId     Int       @map("user_id")
+  telegramId BigInt    @map("telegram_id")
+  url        String
+  caption    String
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([telegramId])
+  @@map("caption_history")
+}
+
+model SurveyResponse {
+  id                 Int       @id @default(autoincrement())
+  telegramId         BigInt    @map("telegram_id")
+  firstName          String    @default("") @map("first_name")
+  pollIndex          Int       @map("poll_index")
+  question           String
+  selectedOption     Int       @map("selected_option")
+  selectedOptionText String    @map("selected_option_text")
+  pollId             String    @map("poll_id")
+  answeredAt         DateTime  @default(now()) @map("answered_at")
+
+  @@unique([telegramId, pollIndex])
+  @@index([telegramId])
+  @@index([pollId])
+  @@map("survey_responses")
+}
+
+model WebappSurveyResponse {
+  id           Int       @id @default(autoincrement())
+  telegramId   BigInt    @unique @map("telegram_id")
+  firstName    String    @default("") @map("first_name")
+  lastName     String    @default("") @map("last_name")
+  username     String    @default("")
+  language     Language  @default(uz)
+  optionIndex  Int       @map("option_index")
+  optionText   String    @map("option_text")
+  feedback     String    @default("")
+  completedAt  DateTime  @default(now()) @map("completed_at")
+
+  @@index([completedAt])
+  @@map("webapp_survey_responses")
+}
+
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("settings")
+}
+
+// =========================================================
+// MARKETPLACE — accounts, orders, escrow
+// =========================================================
+
+enum AdAccountStatus {
+  PENDING       // ariza topshirildi, admin tasdiqlashini kutmoqda
+  ACTIVE        // ko'rinadi, buyurtma qabul qiladi
+  SUSPENDED     // vaqtincha o'chirilgan (egasi yoki admin)
+  BANNED        // mabadiy bloklangan (3 strike)
+}
+
+enum Niche {
+  EDIT
+  STATUS
+  LIFESTYLE
+  BEAUTY
+  FOOD
+  SPORT
+  AUTO
+  BUSINESS
+  EDUCATION
+  ENTERTAINMENT
+  TECH
+  OTHER
+}
+
+model AdAccount {
+  id              Int             @id @default(autoincrement())
+  ownerId         Int             @map("owner_id")
+  igUsername      String          @unique @map("ig_username")
+  igProfileUrl    String          @default("") @map("ig_profile_url")
+  avatarFileId    String          @default("") @map("avatar_file_id")
+  niche           Niche           @default(OTHER)
+  customNiche     String          @default("") @map("custom_niche")
+  region          String          @default("Toshkent")
+  description     String          @default("")
+
+  followers       Int             @default(0)
+  avgReelsViews   Int             @default(0) @map("avg_reels_views")
+  storyViews      Int             @default(0) @map("story_views")
+  engagementRate  Float           @default(0) @map("engagement_rate")
+
+  priceStory      Int             @default(0) @map("price_story")     // UZS
+  priceReels      Int             @default(0) @map("price_reels")     // UZS
+  priceFeed       Int             @default(0) @map("price_feed")      // UZS
+
+  guaranteedViews Int             @default(0) @map("guaranteed_views")
+  guaranteeHours  Int             @default(24) @map("guarantee_hours")
+
+  status          AdAccountStatus @default(PENDING)
+  isVerified      Boolean         @default(false) @map("is_verified")
+  // Admin Insy botdagi "☑️ Verify" bo'limidan qo'lda beradigan ko'k nishon
+  // (isVerified — bu shunchaki tasdiqlangan/faol degani, nishon emas).
+  verifiedBadge   Boolean         @default(false) @map("verified_badge")
+  rating          Float           @default(0)
+  completedOrders Int             @default(0) @map("completed_orders")
+  successRate     Float           @default(100) @map("success_rate")  // % garant bajaruvi
+
+  verificationScreenshots Json    @default("[]") @map("verification_screenshots")
+  reviewedAt      DateTime?       @map("reviewed_at")
+  reviewedBy      Int?            @map("reviewed_by")
+
+  // Akkaunt allaqachon ACTIVE bo'lgach, egasi rasm/skrinshotlarini yangilamoqchi
+  // bo'lsa — o'zgarish TO'G'RIDAN-TO'G'RI live akkauntga yozilmaydi, avval shu
+  // yerda "taklif" sifatida turadi va admin tasdiqlagach live maydonlarga
+  // ko'chiriladi (null = hech qanday kutilayotgan o'zgarish yo'q).
+  pendingEdit     Json?           @map("pending_edit")
+
+  // Admin tomonidan muzlatish — vaqt tugagach avtomatik ACTIVE ga qaytadi
+  frozenUntil     DateTime?       @map("frozen_until")
+
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime        @updatedAt @map("updated_at")
+
+  owner           User            @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  orders          Order[]
+  cases           CaseStudy[]
+
+  @@index([status, niche])
+  @@index([ownerId])
+  @@map("ad_accounts")
+}
+
+enum OrderFormat {
+  STORY
+  REELS
+  FEED
+}
+
+enum OrderStatus {
+  // ── Yangi karta-tolov cycle (real to'lov, admin tasdiqlaydi) ──
+  AWAITING_SELLER_CONSENT   // sellerga xabar yuborildi, javob kutilmoqda
+  AWAITING_PAYMENT          // seller qabul qildi, buyer to'lov qilishi kutilmoqda
+  AWAITING_PAYMENT_APPROVAL // buyer skrinshot yubordi, admin tasdiqlashini kutyapti
+  AWAITING_BUYER_MATERIAL   // admin tasdiqladi, buyer reklama videosini yuborishi kutilmoqda
+  PAYMENT_APPROVED          // buyer video yubordi, seller post joylashini kutmoqda
+  AWAITING_BUYER_VERIFY     // seller skrinshot yubordi, buyer tasdiqlashini kutyapti
+  BUYER_VERIFIED            // buyer tasdiqladi, releaseAt vaqtigacha kutilmoqda
+
+  // ── Eski status'lar (saqlanadi, ammo yangi cycle'da ishlatilmaydi) ──
+  PENDING_PAYMENT
+  PAID
+  ACCEPTED
+  POSTED
+  COMPLETED         // pul ozod qilindi
+  DISPUTED
+  CANCELLED
+  REFUNDED
+  EXPIRED
+}
+
+enum MaterialType {
+  VIDEO
+  IMAGE
+}
+
+model Order {
+  id               Int          @id @default(autoincrement())
+  advertiserId     Int          @map("advertiser_id")
+  adAccountId      Int          @map("ad_account_id")
+
+  format           OrderFormat
+  price            Int          // umumiy narx (UZS)
+  commissionRate  Float         @default(15) @map("commission_rate")  // %
+  commissionAmount Int          @map("commission_amount")
+  escrowAmount     Int          @map("escrow_amount")                  // akkaunt egasiga tegishli (price - commission)
+
+  materialType     MaterialType @map("material_type")
+  materialFileId   String       @default("") @map("material_file_id") // Telegram file_id
+  materialCaption  String       @default("") @map("material_caption")
+
+  guaranteedViews  Int          @map("guaranteed_views")
+  achievedViews    Int          @default(0) @map("achieved_views")
+  guaranteeProof   String       @default("") @map("guarantee_proof") // Telegram file_id of screenshot
+
+  status           OrderStatus  @default(AWAITING_SELLER_CONSENT)
+
+  // Yangi cycle field'lari
+  targetIgUsername    String?    @map("target_ig_username")   // buyer'ning Instagram username (qaysi akkauntiga ulashni hohlaydi)
+  paymentProofFileId  String?    @map("payment_proof_file_id") // buyer to'lov skrinshoti
+  paymentCardSnapshot String?    @map("payment_card_snapshot") // buyerga yuborilgan karta + ism (audit)
+  paymentApprovedAt   DateTime?  @map("payment_approved_at")
+  paymentApprovedBy   Int?       @map("payment_approved_by")  // admin user id
+  postProofFileId     String?    @map("post_proof_file_id")   // seller post skrinshoti
+  verifiedAt          DateTime?  @map("verified_at")          // buyer post tasdiqlagan vaqt
+  releaseAt           DateTime?  @map("release_at")           // qachon sellerga pul tushadi
+
+  acceptedAt       DateTime?    @map("accepted_at")
+  postedAt         DateTime?    @map("posted_at")
+  completedAt      DateTime?    @map("completed_at")
+  deadlinePostBy   DateTime?    @map("deadline_post_by")
+  deadlineKeepUntil DateTime?   @map("deadline_keep_until")
+
+  createdAt        DateTime     @default(now()) @map("created_at")
+  updatedAt        DateTime     @updatedAt @map("updated_at")
+
+  advertiser       User         @relation("buyer", fields: [advertiserId], references: [id], onDelete: Cascade)
+  adAccount        AdAccount    @relation(fields: [adAccountId], references: [id], onDelete: Cascade)
+  events           OrderEvent[]
+  payments         Payment[]
+  dispute          Dispute?
+  caseStudy        CaseStudy?
+
+  @@index([advertiserId, status])
+  @@index([adAccountId, status])
+  @@index([status, createdAt])
+  @@map("orders")
+}
+
+model OrderEvent {
+  id        Int      @id @default(autoincrement())
+  orderId   Int      @map("order_id")
+  type      String   // "created" | "paid" | "accepted" | "posted" | "completed" | "disputed" | "cancelled" | "refunded"
+  actorId   Int?     @map("actor_id")
+  payload   Json     @default("{}")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId, createdAt])
+  @@map("order_events")
+}
+
+// =========================================================
+// MONEY — wallet, transactions, payouts, payments
+// =========================================================
+
+model Wallet {
+  id            Int      @id @default(autoincrement())
+  userId        Int      @unique @map("user_id")
+  balance       Int      @default(0)         // mavjud balans (UZS)
+  frozenBalance Int      @default(0) @map("frozen_balance")  // escrow yoki payout pending
+  // balance ichidagi YECHIB OLIB BO'LMAYDIGAN qism: hamyonni to'ldirish va
+  // bekor qilingan buyurtmadan qaytgan pul. Faqat ilova ichida sarflanadi
+  // (to'ldirib darhol yechib olish orqali karta "yuvish"ning oldini oladi).
+  // Yechib olish mumkin = balance - depositBalance.
+  depositBalance Int     @default(0) @map("deposit_balance")
+  totalEarned   Int      @default(0) @map("total_earned")
+  totalSpent    Int      @default(0) @map("total_spent")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions  Transaction[]
+
+  @@map("wallets")
+}
+
+enum TransactionType {
+  DEPOSIT          // mijoz to'lov qildi (Sofpay'dan)
+  ESCROW_HOLD      // pul escrow'ga muzlatildi (mijoz tomonidan)
+  ESCROW_RELEASE   // escrow akkaunt egasiga ozod qilindi
+  ESCROW_REFUND    // escrow mijozga qaytarildi
+  COMMISSION       // platforma komissiyasi
+  PAYOUT           // akkaunt egasi yechib oldi
+  REFERRAL_BONUS   // referal bonus
+  ADJUSTMENT       // admin tomonidan qo'lda tuzatish
+  TAG_REWARD       // atmetka qilish kampaniyasi — prosmotr bosqichi uchun mukofot
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+model Transaction {
+  id        Int               @id @default(autoincrement())
+  walletId  Int               @map("wallet_id")
+  type      TransactionType
+  amount    Int               // UZS (musbat = kirim, manfiy = chiqim)
+  status    TransactionStatus @default(COMPLETED)
+  orderId   Int?              @map("order_id")
+  payoutId  Int?              @map("payout_id")
+  paymentId Int?              @map("payment_id")
+  note      String            @default("")
+  meta      Json              @default("{}")
+  createdAt DateTime          @default(now()) @map("created_at")
+
+  wallet    Wallet            @relation(fields: [walletId], references: [id], onDelete: Cascade)
+
+  @@index([walletId, createdAt])
+  @@index([orderId])
+  @@map("transactions")
+}
+
+enum PayoutStatus {
+  PENDING
+  APPROVED
+  PAID
+  REJECTED
+}
+
+model Payout {
+  id           Int           @id @default(autoincrement())
+  userId       Int           @map("user_id")
+  amount       Int
+  cardNumber   String        @map("card_number")
+  cardHolder   String        @default("") @map("card_holder")
+  status       PayoutStatus  @default(PENDING)
+  requestedAt  DateTime      @default(now()) @map("requested_at")
+  processedAt  DateTime?     @map("processed_at")
+  processedBy  Int?          @map("processed_by")
+  note         String        @default("")
+  rejectReason String        @default("") @map("reject_reason")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([status, requestedAt])
+  @@index([userId])
+  @@map("payouts")
+}
+
+// Wallet top-up (qo'lda — admin tasdiqlash orqali) — buyer kartaga pul o'tkazadi,
+// chek skrinshot yuboradi, admin tasdiqlasa balansga qo'shiladi.
+enum TopupStatus {
+  PENDING       // foydalanuvchi summa kiritdi, kartaga pul kutilmoqda
+  AWAITING_REVIEW // skrinshot yuborildi, admin tekshiruvini kutyapti
+  APPROVED      // admin tasdiqladi — balansga qo'shildi
+  REJECTED      // admin rad etdi
+  CANCELLED     // foydalanuvchi bekor qildi
+}
+
+model Topup {
+  id                Int          @id @default(autoincrement())
+  userId            Int          @map("user_id")
+  amount            Int          // UZS
+  status            TopupStatus  @default(PENDING)
+  cardSnapshot      String       @default("") @map("card_snapshot")
+  screenshotFileId  String       @default("") @map("screenshot_file_id")
+  userTgMessageId   Int?         @map("user_tg_message_id")    // botdan user'ga yuborilgan xabar
+  adminTgChatId     String?      @map("admin_tg_chat_id")      // qaysi adminga yuborilgan
+  adminTgMessageId  Int?         @map("admin_tg_message_id")   // adminga yuborilgan xabar
+  rejectReason      String       @default("") @map("reject_reason")
+  createdAt         DateTime     @default(now()) @map("created_at")
+  reviewedAt        DateTime?    @map("reviewed_at")
+
+  // ── checkout.uz avto-to'lov (2026-08-27) ──────────────────────────────────
+  // provider: "MANUAL" (karta + skrinshot + admin) | "CHECKOUT_UZ" (avtomatik).
+  // Top_sxema bot (server/bot.php) allaqachon shu checkout.uz merchant
+  // hisobidan foydalanadi (video-analiz limit sotib olish uchun) — hamyon
+  // to'ldirish endi SHU HISOBGA ulanadi.
+  provider          String       @default("MANUAL") @map("provider")
+  providerPaymentId String       @default("") @map("provider_payment_id") // checkout.uz payment._id
+  providerUuid      String       @default("") @map("provider_uuid")       // checkout.uz payment._uuid (status so'rovi uchun)
+  payUrls           Json         @default("{}") @map("pay_urls")          // {click?, payme?}
+
+  @@index([userId, createdAt])
+  @@index([status])
+  @@index([provider, status])
+  @@map("topups")
+}
+
+enum PaymentProvider {
+  SOFPAY
+  CLICK
+  PAYME
+  MOCK
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model Payment {
+  id           Int             @id @default(autoincrement())
+  orderId      Int             @map("order_id")
+  provider     PaymentProvider
+  providerId   String          @default("") @map("provider_id")
+  amount       Int
+  status       PaymentStatus   @default(PENDING)
+  payload      Json            @default("{}")
+  redirectUrl  String          @default("") @map("redirect_url")
+  paidAt       DateTime?       @map("paid_at")
+  createdAt    DateTime        @default(now()) @map("created_at")
+
+  order        Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([providerId])
+  @@map("payments")
+}
+
+// =========================================================
+// SUPPORT — disputes, strikes, case studies, notifications
+// =========================================================
+
+enum DisputeStatus {
+  OPEN
+  RESOLVED_ADVERTISER  // mijoz foydasiga
+  RESOLVED_OWNER       // akkaunt egasi foydasiga
+  RESOLVED_PARTIAL     // qisman refund
+}
+
+model Dispute {
+  id           Int           @id @default(autoincrement())
+  orderId      Int           @unique @map("order_id")
+  openedBy     Int           @map("opened_by")           // userId
+  reason       String
+  evidence     Json          @default("[]")              // Telegram file_id'lar massivi
+  status       DisputeStatus @default(OPEN)
+  resolution   String        @default("")
+  refundAmount Int           @default(0) @map("refund_amount")
+  resolvedAt   DateTime?     @map("resolved_at")
+  resolvedBy   Int?          @map("resolved_by")
+  createdAt    DateTime      @default(now()) @map("created_at")
+
+  order        Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@map("disputes")
+}
+
+model Strike {
+  id          Int       @id @default(autoincrement())
+  userId      Int       @map("user_id")
+  orderId     Int?      @map("order_id")
+  reason      String
+  expiresAt   DateTime  @map("expires_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+  @@map("strikes")
+}
+
+model CaseStudy {
+  id              Int       @id @default(autoincrement())
+  orderId         Int       @unique @map("order_id")
+  adAccountId     Int       @map("ad_account_id")
+  screenshotFileId String   @map("screenshot_file_id")
+  description     String    @default("")
+  metricsBefore   Json      @default("{}") @map("metrics_before")
+  metricsAfter    Json      @default("{}") @map("metrics_after")
+  isApproved      Boolean   @default(false) @map("is_approved")
+  approvedAt      DateTime? @map("approved_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  order           Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  adAccount       AdAccount @relation(fields: [adAccountId], references: [id], onDelete: Cascade)
+
+  @@index([adAccountId, isApproved])
+  @@map("case_studies")
+}
+
+enum NotificationType {
+  ORDER_NEW
+  ORDER_ACCEPTED
+  ORDER_POSTED
+  ORDER_COMPLETED
+  ORDER_DISPUTED
+  ORDER_CANCELLED
+  ACCOUNT_VERIFIED
+  ACCOUNT_REJECTED
+  PAYOUT_APPROVED
+  PAYOUT_REJECTED
+  STRIKE_ISSUED
+  REFERRAL_BONUS
+  SYSTEM
+}
+
+model Notification {
+  id        Int               @id @default(autoincrement())
+  userId    Int               @map("user_id")
+  type      NotificationType
+  title     String
+  body      String
+  payload   Json              @default("{}")
+  isRead    Boolean           @default(false) @map("is_read")
+  createdAt DateTime          @default(now()) @map("created_at")
+
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead, createdAt])
+  @@map("notifications")
+}
+
+// =========================================================
+// TAG CAMPAIGN — "Atmetka qilish": foydalanuvchi videosida bizning
+// akkountni atmetka qilsa, prosmotr bosqichlariga qarab pul ishlaydi.
+// =========================================================
+
+enum TagSubmissionStatus {
+  ACTIVE          // atmetka bor, kunlik tekshiruv davom etmoqda
+  TAG_REMOVED     // "Noaktiv" — atmetka topilmadi; kuniga 1 marta tekshiriladi, 2 kunda qaytmasa o'chiriladi
+  COMPLETED       // barcha bosqich (tier) puli to'langan
+  PENDING_REVIEW  // CSGO / CSGO_TAG — admin reklama rolikini tasdiqlashi kutilmoqda
+  REJECTED        // admin rad etdi
+  EXPIRED         // 30 kunlik kuzatuv muddati tugadi (oxirgi tekshiruvdan keyin)
+}
+
+// TAG_ONLY — eski/oddiy usul: shunchaki atmetka qilingan har qanday video.
+// CSGO — maxsus reklama roligi (atmetka shart emas), faqat prosmotr bo'yicha.
+// CSGO_TAG — CSGO roligi + atmetka ham qilingan bo'lsa, ko'proq to'lanadi.
+enum TagSubmissionMethod {
+  TAG_ONLY
+  CSGO
+  CSGO_TAG
+}
+
+model TagSubmission {
+  id             Int                 @id @default(autoincrement())
+  userId         Int                 @map("user_id")
+  videoUrl       String              @map("video_url")
+  shortCode      String              @unique @map("short_code")
+  caption        String              @default("")
+  targetUsername String              @map("target_username")
+  method         TagSubmissionMethod @default(TAG_ONLY)
+  // Topshirilgan paytdagi bosqich jadvali — keyinroq admin narxlarni
+  // o'zgartirsa ham, bu YOZUV allaqachon boshlangan hisob-kitobga ta'sir
+  // qilmaydi (adolat/bashoratlilik uchun "snapshot").
+  rewardTiers    Json                @default("[]") @map("reward_tiers")
+  paidTiers      Json                @default("[]") @map("paid_tiers") // to'langan views bosqichlari
+  totalPaid      Int                 @default(0) @map("total_paid")
+  viewCount      Int                 @default(0) @map("view_count")
+  status         TagSubmissionStatus @default(ACTIVE)
+  checksCount    Int                 @default(0) @map("checks_count")
+  lastCheckedAt  DateTime            @default(now()) @map("last_checked_at")
+  tagRemovedAt   DateTime?           @map("tag_removed_at") // TAG_REMOVED bo'lgan payt (2 kunlik muhlat uchun)
+  // Nakrutka filtri: prosmotrga nisbatan layk+izoh juda kam bo'lsa to'lov
+  // ushlab turiladi va admin'ga yuboriladi (reviewHeldAt). Admin "to'lash"
+  // desa — viewsTrusted=true va bu video boshqa tekshirilmaydi.
+  // Admin tasdiqlagan vaqt — tekshiruv jadvali (1-kun 4×, 2-kun 3× ...) shundan
+  // boshlab hisoblanadi. Eski yozuvlarda null → createdAt ishlatiladi.
+  approvedAt     DateTime?           @map("approved_at")
+  viewsTrusted   Boolean             @default(false) @map("views_trusted")
+  reviewHeldAt   DateTime?           @map("review_held_at")
+  createdAt      DateTime            @default(now()) @map("created_at")
+
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@map("tag_submissions")
+}
