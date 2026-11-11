@@ -1,0 +1,1 @@
+import{O as a,r as c}from"./index-CKqB-6FR.js";function i(e){const n=a();c.useEffect(()=>{const t=window.Telegram?.WebApp?.BackButton;if(!t)return;const o=e??(()=>n(-1));return t.onClick(o),t.show(),()=>{t.offClick(o),t.hide()}},[e])}export{i as u};

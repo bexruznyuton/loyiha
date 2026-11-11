@@ -1,0 +1,1 @@
+import{v as u,r as a}from"./index-Ct-Smt8N.js";let e=null;function s(n){const i=u();a.useEffect(()=>{const t=window.Telegram?.WebApp?.BackButton;if(!t)return;e!==null&&(window.clearTimeout(e),e=null);const o=n??(()=>i(-1));return t.onClick(o),t.show(),()=>{t.offClick(o),e=window.setTimeout(()=>{t.hide(),e=null},60)}},[n])}export{s as u};

@@ -1,0 +1,2855 @@
+/* Top Sxema V2 - Ultimate Cyber Glass Design & Admin Suite */
+
+/* Global Reset for Horizontal Overflow */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+:root {
+  --portal-bg: #08090e;
+  --portal-card: #121420;
+  --portal-card-border: rgba(255, 255, 255, 0.08);
+  --portal-cyan: #00e5ff;
+  --portal-pink: #ec4899;
+  --portal-purple: #8b5cf6;
+  --portal-blue: #0ea5e9;
+  --portal-green: #10b981;
+  --portal-orange: #f97316;
+  --portal-gold: #fbbf24;
+  --portal-text: #f8fafc;
+  --portal-subtext: #94a3b8;
+}
+
+/* ==========================================================================
+   1. Eye-catching Admin Panel Card on Profile Page (/profile)
+   ========================================================================== */
+.topsxema-admin-profile-card {
+  position: relative;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 10px 0 !important;
+  background: linear-gradient(135deg, rgba(20, 24, 38, 0.98), rgba(15, 17, 26, 0.98));
+  border: 1.5px solid rgba(14, 165, 233, 0.45);
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  cursor: pointer;
+}
+
+.topsxema-admin-profile-card:active {
+  transform: scale(0.985);
+}
+
+.topsxema-admin-card-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.topsxema-admin-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.topsxema-admin-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(139, 92, 246, 0.25));
+  border: 1px solid rgba(14, 165, 233, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+}
+
+.topsxema-admin-text-wrap {
+  min-width: 0;
+}
+
+.topsxema-admin-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topsxema-admin-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+
+.topsxema-admin-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.topsxema-admin-subtitle {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin: 3px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topsxema-admin-open-btn {
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   2. Marketplace Navigation Tabs: Akkauntlar / Auksion
+   ========================================================================== */
+.topsxema-tab-container {
+  display: flex;
+  gap: 8px;
+  padding: 6px 0 10px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 20;
+}
+
+.topsxema-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  background: rgba(18, 22, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+.topsxema-tab-btn:active {
+  transform: scale(0.97);
+}
+
+.topsxema-tab-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(139, 92, 246, 0.3));
+  border: 1.5px solid rgba(14, 165, 233, 0.7);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.25);
+}
+
+.topsxema-tab-btn.active svg {
+  color: #38bdf8;
+  stroke: #38bdf8;
+}
+
+/* ==========================================================================
+   3. 4K Comparative Rectangular Screen Card
+   ========================================================================== */
+.portal-arena-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 180px; /* Safe padding for bottom dock + nav */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.portals-screen-card {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 22px;
+  background: #08090e;
+  border: 2px solid rgba(14, 165, 233, 0.4);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(14, 165, 233, 0.2);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+#portal-wheel-canvas {
+  display: block;
+  width: 100%;
+  height: 270px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   4. Prize Info Banner Card (Trophy / Account Info)
+   ========================================================================== */
+.portals-prize-banner-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgba(22, 26, 42, 0.98), rgba(16, 18, 28, 0.98));
+  border: 1.5px solid rgba(251, 191, 36, 0.45);
+  border-radius: 16px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.12);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.portals-prize-banner-btn:active {
+  transform: scale(0.985);
+  border-color: #fbbf24;
+}
+
+.portals-prize-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.portals-prize-banner-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.portals-prize-banner-text {
+  min-width: 0;
+}
+
+.portals-prize-banner-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.portals-prize-banner-title span {
+  color: #fbbf24;
+}
+
+.portals-prize-banner-sub {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.portals-prize-banner-arrow {
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   5. Empty State & Telegram Sticker Animation
+   ========================================================================== */
+.portals-empty-state-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 36px 18px 30px;
+  background: rgba(16, 18, 30, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  margin: 12px 0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#empty-auction-lottie-container {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 14px;
+  filter: drop-shadow(0 12px 24px rgba(14, 165, 233, 0.3));
+}
+
+.portals-empty-title {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+
+.portals-empty-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0 0 18px;
+  max-width: 290px;
+  line-height: 1.5;
+}
+
+.portals-empty-admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 280px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   6. Players Header & List Cards
+   ========================================================================== */
+.portals-players-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0 10px;
+  padding: 0 2px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.portals-players-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.portals-players-title span {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.portals-players-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portals-game-id {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+.portals-admin-create-btn {
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  padding: 5px 12px;
+  font-size: 11.5px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.portals-player-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(18, 20, 32, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 15px;
+  padding: 9px 12px;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.portals-player-card.is-p1 {
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.08), rgba(18, 20, 32, 0.9));
+}
+
+.portals-player-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.portals-player-rank {
+  font-size: 11px;
+  font-weight: 800;
+  color: #64748b;
+  width: 18px;
+  flex-shrink: 0;
+}
+
+.portals-player-avatar-wrap {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--portal-blue);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.portals-player-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portals-player-name {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.portals-player-pct {
+  font-size: 11px;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.portals-player-amount {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #fbbf24;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   7. Floating Action Dock (Sits ABOVE Native Bottom Navigation Bar)
+   ========================================================================== */
+.portals-bottom-dock {
+  position: fixed;
+  bottom: 64px; /* Sits right above native 64px bottom nav */
+  left: 0;
+  right: 0;
+  background: rgba(10, 12, 18, 0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  z-index: 90; /* Right below native nav (z-index 100) */
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+}
+
+.portals-dock-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.portals-balance-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 4px 10px;
+  border-radius: 18px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.portals-balance-chip svg {
+  color: #38bdf8;
+}
+
+.portals-timer-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.portals-timer-label {
+  color: #ef4444;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.portals-timer-val {
+  color: #f87171;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.portals-dock-action-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.portals-input-container {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.portals-amount-input {
+  width: 100%;
+  background: rgba(18, 22, 34, 0.95);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 13px;
+  padding: 10px 48px 10px 12px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  outline: none;
+  font-variant-numeric: tabular-nums;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.portals-amount-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.25);
+}
+
+.portals-uzs-tag {
+  position: absolute;
+  right: 12px;
+  color: #10b981;
+  font-weight: 800;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.portals-bid-btn-green {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border: none;
+  border-radius: 13px;
+  padding: 10px 22px;
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portals-bid-btn-green:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   8. Full Dedicated Admin Panel Page & Navigation Bar
+   ========================================================================== */
+.topsxema-admin-page-container {
+  position: fixed;
+  inset: 0;
+  background: #08090e;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-bottom: 130px;
+  box-sizing: border-box;
+}
+
+.topsxema-admin-top-header {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 13, 22, 0.95);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topsxema-admin-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topsxema-admin-header-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(14, 165, 233, 0.2);
+  border: 1px solid rgba(14, 165, 233, 0.4);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topsxema-admin-top-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.topsxema-admin-exit-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.topsxema-admin-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.topsxema-admin-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(11, 13, 22, 0.98);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px 6px calc(env(safe-area-inset-bottom, 8px) + 2px);
+  z-index: 100000;
+  box-sizing: border-box;
+}
+
+.topsxema-admin-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.topsxema-admin-nav-item.active {
+  color: #38bdf8;
+  background: rgba(14, 165, 233, 0.12);
+}
+
+.topsxema-admin-nav-item.active svg {
+  stroke: #38bdf8;
+  filter: drop-shadow(0 2px 6px rgba(14, 165, 233, 0.4));
+}
+
+.topsxema-admin-card {
+  background: rgba(18, 20, 32, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.topsxema-admin-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.topsxema-admin-card-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topsxema-form-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 5px;
+}
+
+.topsxema-admin-input,
+.topsxema-admin-select,
+.topsxema-admin-textarea {
+  width: 100%;
+  background: rgba(10, 12, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: #fff;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.topsxema-admin-input:focus,
+.topsxema-admin-select:focus,
+.topsxema-admin-textarea:focus {
+  border-color: #0ea5e9;
+}
+
+.topsxema-admin-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.topsxema-admin-save-btn {
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 18px;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.35);
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.topsxema-admin-save-btn:active {
+  transform: scale(0.97);
+}
+
+.topsxema-admin-danger-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   9. Modal & Sheets (Prize Details & Winner Podium)
+   ========================================================================== */
+.topsxema-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 99999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.topsxema-modal-sheet {
+  background: #10121d;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 26px 26px 0 0;
+  width: 100%;
+  max-width: 540px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 18px 18px calc(env(safe-area-inset-bottom, 16px) + 16px);
+  box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.8);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.portals-prize-dialog-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid #fbbf24;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+  margin: 0 auto 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #181b29;
+}
+
+.portals-prize-dialog-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portals-prize-open-ig-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 13px;
+  padding: 11px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(236, 72, 153, 0.35);
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   10. Atmetka Section Enhancements
+   ========================================================================== */
+.topsxema-live-budget-card {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 10px 0 !important;
+  background: linear-gradient(135deg, rgba(20, 24, 38, 0.98), rgba(15, 17, 26, 0.98));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.12);
+}
+
+.topsxema-budget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.topsxema-budget-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topsxema-budget-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.topsxema-budget-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.topsxema-budget-live-tag {
+  font-size: 11px;
+  color: #10b981;
+  font-weight: 700;
+}
+
+.topsxema-budget-progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.topsxema-budget-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #0ea5e9);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.topsxema-budget-numbers-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+}
+
+/* ==========================================================================
+   11. Quick Bid Preset Chips & User Feedback & Ideas Styling
+   ========================================================================== */
+.portals-dock-presets-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0 8px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.portals-dock-presets-row::-webkit-scrollbar {
+  display: none;
+}
+
+.portals-preset-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  padding: 5px 11px;
+  border-radius: 9px;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.portals-preset-chip:active {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: #10b981;
+  color: #10b981;
+  transform: scale(0.96);
+}
+
+.portals-feedback-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  color: #c084fc;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.portals-feedback-pill-btn:active {
+  transform: scale(0.96);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(236, 72, 153, 0.35));
+}
+
+.topsxema-feedback-modal {
+  position: relative;
+  background: #111422;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px 24px 0 0;
+  padding: 22px 18px 30px;
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.topsxema-cat-selector {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0 16px;
+}
+
+.topsxema-cat-chip {
+  flex: 1;
+  text-align: center;
+  padding: 9px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.topsxema-cat-chip.active {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(139, 92, 246, 0.25));
+  border-color: #0ea5e9;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+}
+
+.topsxema-feedback-textarea {
+  width: 100%;
+  min-height: 110px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 13.5px;
+  box-sizing: border-box;
+  resize: none;
+  font-family: inherit;
+  margin-bottom: 16px;
+}
+
+.topsxema-feedback-textarea:focus {
+  outline: none;
+  border-color: #0ea5e9;
+}
+
+.topsxema-feedback-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.topsxema-feedback-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.topsxema-feedback-user {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.topsxema-feedback-badge {
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.topsxema-feedback-msg {
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  margin-bottom: 6px;
+}
+
+.topsxema-feedback-time {
+  font-size: 11px;
+  color: #64748b;
+}
+
+
+/* ==========================================================================
+   9. MISSING COMPONENT STYLES (28 classes were undefined -> broken layout)
+   ========================================================================== */
+
+.topsxema-svg,
+.portals-svg-inline {
+  flex-shrink: 0;
+  display: block;
+}
+
+/* --- Generic form helpers (used by legacy + broadcast panels) --- */
+.topsxema-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.topsxema-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.topsxema-input,
+.topsxema-textarea {
+  width: 100%;
+  background: rgba(10, 12, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: #fff;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.topsxema-textarea {
+  min-height: 78px;
+  resize: vertical;
+}
+
+.topsxema-input:focus,
+.topsxema-textarea:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.14);
+}
+
+.topsxema-input::placeholder,
+.topsxema-textarea::placeholder {
+  color: #475569;
+}
+
+.topsxema-action-btn-primary {
+  background: linear-gradient(135deg, #00e5ff, #8b5cf6 55%, #ec4899);
+  background-size: 180% 180%;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 18px;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  transition: transform 0.18s, box-shadow 0.25s, background-position 0.4s;
+}
+
+.topsxema-action-btn-primary:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 8px 26px rgba(0, 229, 255, 0.45);
+}
+
+.topsxema-action-btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* --- Legacy admin modal tabs --- */
+.topsxema-admin-tabs-row {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  scrollbar-width: none;
+}
+
+.topsxema-admin-tabs-row::-webkit-scrollbar {
+  display: none;
+}
+
+.topsxema-admin-tab-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 13px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.topsxema-admin-tab-item.active {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(139, 92, 246, 0.2));
+  border-color: rgba(0, 229, 255, 0.45);
+  color: #00e5ff;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.25);
+}
+
+/* --- Bottom-sheet style modal (prize / feedback) --- */
+.topsxema-admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 5, 10, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.topsxema-admin-modal-sheet {
+  width: 100%;
+  max-width: 520px;
+  max-height: 86vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #14182a, #0d0f18);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  border-radius: 26px 26px 0 0;
+  padding: 18px 16px calc(env(safe-area-inset-bottom, 8px) + 20px);
+  box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.6);
+  animation: topsxema-sheet-up 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes topsxema-sheet-up {
+  from { transform: translateY(28px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- "Yangi Auksion Yaratish" dialog (was completely unstyled) --- */
+.topsxema-admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 5, 10, 0.78);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.topsxema-admin-modal-dialog {
+  width: 100%;
+  max-width: 440px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: linear-gradient(165deg, #161a2c 0%, #0d0f18 70%);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 24px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.66), 0 0 0 1px rgba(0, 229, 255, 0.12);
+  animation: topsxema-dialog-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes topsxema-dialog-in {
+  from { transform: scale(0.95) translateY(12px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.topsxema-admin-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(139, 92, 246, 0.12));
+  border-radius: 24px 24px 0 0;
+}
+
+.topsxema-admin-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.topsxema-admin-modal-header-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(251, 191, 36, 0.16);
+  border: 1px solid rgba(251, 191, 36, 0.42);
+  color: #fbbf24;
+  flex-shrink: 0;
+}
+
+.topsxema-admin-modal-title {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topsxema-admin-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+
+.topsxema-admin-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.45);
+  color: #f87171;
+  transform: rotate(90deg);
+}
+
+.topsxema-admin-modal-body {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.topsxema-admin-modal-body label {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+/* --- Broadcast panel --- */
+.topsxema-broadcast-selector {
+  display: flex;
+  gap: 8px;
+}
+
+.topsxema-broadcast-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.topsxema-broadcast-btn.active {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.18), rgba(139, 92, 246, 0.18));
+  border-color: rgba(0, 229, 255, 0.5);
+  color: #00e5ff;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.22);
+}
+
+.topsxema-broadcast-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+/* --- Player card internals --- */
+.portals-player-card-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.portals-player-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.portals-player-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.portals-player-chance-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 5px;
+}
+
+.portals-player-bid {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #fbbf24;
+  white-space: nowrap;
+}
+
+.portals-winner-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.portals-winner-card::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -30%;
+  width: 60%;
+  height: 220%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: rotate(18deg);
+  animation: topsxema-shine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes topsxema-shine {
+  0% { left: -60%; }
+  55% { left: 130%; }
+  100% { left: 130%; }
+}
+
+/* ==========================================================================
+   10. ADMIN NAVIGATION = USER NAVIGATION (floating glass pill + indicator)
+   ========================================================================== */
+:root {
+  --topsxema-btbar-h: 62px;
+  --topsxema-glass-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.27),
+    inset -2px -2px 0 -2px rgba(255, 255, 255, 0.24),
+    inset -3px -8px 1px -6px rgba(255, 255, 255, 0.18),
+    inset -0.3px -1px 4px 0 rgba(0, 0, 0, 0.24),
+    inset -1.5px 2.5px 0 -2px rgba(0, 0, 0, 0.4),
+    inset 0 3px 4px -2px rgba(0, 0, 0, 0.4),
+    inset 2px -6.5px 1px -4px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.2),
+    0 6px 16px 0 rgba(0, 0, 0, 0.16);
+  --topsxema-indicator-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 2px 1px 0 -1px rgba(255, 255, 255, 0.35),
+    inset -1.5px -1px 0 -1px rgba(255, 255, 255, 0.28),
+    inset -2px -6px 1px -5px rgba(255, 255, 255, 0.2),
+    inset -1px 2px 3px -1px rgba(0, 0, 0, 0.55),
+    inset 0 -4px 1px -2px rgba(0, 0, 0, 0.45),
+    0 3px 6px rgba(0, 0, 0, 0.35);
+}
+
+.topsxema-admin-bottom-nav {
+  position: fixed;
+  inset-x: 0;
+  left: 0;
+  right: 0;
+  bottom: max(28px, calc(env(safe-area-inset-bottom, 8px) + 14px));
+  z-index: 100000;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 12px;
+  background: none;
+  border-top: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  pointer-events: none;
+}
+
+.topsxema-admin-bottom-nav::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  width: min(420px, 84vw);
+  height: 74px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.32), rgba(139, 92, 246, 0.16) 45%, transparent 72%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: -1;
+  animation: topsxema-nav-breathe 4.5s ease-in-out infinite;
+}
+
+@keyframes topsxema-nav-breathe {
+  0%, 100% { opacity: 0.65; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.06); }
+}
+
+.topsxema-admin-nav-pill {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  height: var(--topsxema-btbar-h);
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(18, 18, 18, 0.86);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: var(--topsxema-glass-shadow);
+  max-width: 440px;
+  flex: 1 1 auto;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.topsxema-admin-nav-indicator {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: calc((100% - 8px) / 4);
+  height: calc(var(--topsxema-btbar-h) - 8px);
+  border-radius: 999px;
+  background: linear-gradient(150deg, rgba(0, 229, 255, 0.24), rgba(139, 92, 246, 0.24));
+  box-shadow: var(--topsxema-indicator-shadow), 0 0 18px rgba(0, 229, 255, 0.35);
+  z-index: 0;
+  pointer-events: none;
+  transition: translate 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topsxema-admin-nav-item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+  min-width: 0;
+  padding: 0 4px;
+  border: none;
+  background: none;
+  border-radius: 999px;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  color: #ffffff;
+  opacity: 0.4;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.topsxema-admin-nav-item span {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.topsxema-admin-nav-item svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+}
+
+.topsxema-admin-nav-item.active {
+  opacity: 1;
+  color: #00e5ff;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.7);
+}
+
+.topsxema-admin-nav-item.active svg {
+  stroke: #00e5ff;
+  filter: drop-shadow(0 2px 8px rgba(0, 229, 255, 0.6));
+}
+
+.topsxema-admin-nav-item:not(.active):hover {
+  opacity: 0.7;
+}
+
+/* Round button next to the pill (same slot as the user-panel avatar) */
+.topsxema-admin-nav-round {
+  width: var(--topsxema-btbar-h);
+  height: var(--topsxema-btbar-h);
+  flex: 0 0 auto;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(40, 39, 39, 0.95);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: var(--topsxema-glass-shadow);
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.2s;
+}
+
+.topsxema-admin-nav-round svg {
+  width: 22px;
+  height: 22px;
+}
+
+.topsxema-admin-nav-round:hover {
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+.topsxema-admin-nav-round:active {
+  transform: scale(0.93);
+}
+
+@media (max-width: 359px) {
+  .topsxema-admin-nav-item span { font-size: 9px; letter-spacing: -0.4px; }
+  .topsxema-admin-bottom-nav { gap: 8px; padding: 0 8px; }
+}
+
+/* ==========================================================================
+   11. EYE-CATCHING ADMIN PANEL FINISH
+   ========================================================================== */
+.topsxema-admin-page-container {
+  background: #08090e;
+}
+
+.topsxema-admin-page-container::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(560px 300px at 8% -4%, rgba(0, 229, 255, 0.16), transparent 62%),
+    radial-gradient(560px 320px at 96% 2%, rgba(139, 92, 246, 0.18), transparent 62%),
+    radial-gradient(720px 420px at 50% 108%, rgba(236, 72, 153, 0.12), transparent 66%);
+  animation: topsxema-aurora 16s ease-in-out infinite alternate;
+}
+
+@keyframes topsxema-aurora {
+  0% { opacity: 0.75; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+.topsxema-admin-top-header,
+.topsxema-admin-content {
+  position: relative;
+  z-index: 1;
+}
+
+.topsxema-admin-top-header {
+  background: linear-gradient(135deg, rgba(15, 18, 32, 0.96), rgba(11, 13, 22, 0.92));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.42);
+}
+
+.topsxema-admin-top-title {
+  background: linear-gradient(92deg, #00e5ff 8%, #8b5cf6 52%, #ec4899 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 15.5px;
+  letter-spacing: 0.2px;
+}
+
+.topsxema-admin-header-icon {
+  background: linear-gradient(140deg, rgba(0, 229, 255, 0.28), rgba(139, 92, 246, 0.28));
+  border: 1px solid rgba(0, 229, 255, 0.45);
+  color: #00e5ff;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
+}
+
+.topsxema-admin-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.13);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 5px 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.topsxema-admin-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+  animation: topsxema-live-pulse 1.7s ease-out infinite;
+}
+
+@keyframes topsxema-live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.65); }
+  70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+/* Entrance animation for panel cards (replays on every tab switch) */
+.topsxema-admin-content > * {
+  animation: topsxema-rise 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.topsxema-admin-content > *:nth-child(1) { animation-delay: 0.02s; }
+.topsxema-admin-content > *:nth-child(2) { animation-delay: 0.08s; }
+.topsxema-admin-content > *:nth-child(3) { animation-delay: 0.14s; }
+.topsxema-admin-content > *:nth-child(4) { animation-delay: 0.2s; }
+.topsxema-admin-content > *:nth-child(5) { animation-delay: 0.26s; }
+.topsxema-admin-content > *:nth-child(6) { animation-delay: 0.32s; }
+
+@keyframes topsxema-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.topsxema-admin-card {
+  background: linear-gradient(160deg, rgba(22, 26, 44, 0.94), rgba(13, 15, 24, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.topsxema-admin-card:hover {
+  border-color: rgba(0, 229, 255, 0.28);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.48), 0 0 24px rgba(0, 229, 255, 0.1);
+}
+
+.topsxema-admin-card-title::before {
+  content: "";
+  width: 4px;
+  height: 15px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #00e5ff, #8b5cf6);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+}
+
+.topsxema-admin-input:focus,
+.topsxema-admin-select:focus,
+.topsxema-admin-textarea:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.14);
+}
+
+.topsxema-admin-save-btn {
+  background: linear-gradient(135deg, #00e5ff, #8b5cf6 58%, #ec4899);
+  background-size: 170% 170%;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.42);
+  transition: transform 0.18s, box-shadow 0.25s, background-position 0.4s;
+}
+
+.topsxema-admin-save-btn:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 8px 26px rgba(0, 229, 255, 0.42);
+}
+
+.topsxema-admin-exit-btn:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.45);
+  color: #f87171;
+}
+
+/* Profile page admin card gets the same glow treatment */
+.topsxema-admin-profile-card {
+  animation: topsxema-card-glow 3.6s ease-in-out infinite;
+}
+
+@keyframes topsxema-card-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35); }
+  50% { box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.55), 0 0 30px rgba(0, 229, 255, 0.28), 0 8px 24px rgba(0, 0, 0, 0.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topsxema-admin-content > *,
+  .topsxema-admin-page-container::before,
+  .topsxema-admin-bottom-nav::before,
+  .topsxema-admin-profile-card,
+  .portals-winner-card::before {
+    animation: none !important;
+  }
+  .topsxema-admin-nav-indicator { transition: none; }
+}
+
+/* ==========================================================================
+   10. YANGI ELEMENTLAR: spinner, admin FAB, byudjet tahrirlash, auksion ro'yxati
+   ========================================================================== */
+
+/* Spinner (yuklanmoqda holati) */
+.topsxema-spin {
+  animation: topsxema-spin 0.85s linear infinite;
+}
+
+@keyframes topsxema-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Tikish (dock) paneli — navigatsiyadan ustida turishi uchun */
+.portals-bottom-dock {
+  z-index: 200;
+  padding-bottom: 10px;
+}
+
+.portals-bid-btn-green {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.portals-bid-btn-green:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+
+.portals-amount-input {
+  font-size: 16px;
+}
+
+/* Byudjet vidjeti ichidagi admin tugmasi */
+.topsxema-budget-edit-btn {
+  margin-top: 10px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  border-radius: 11px;
+  padding: 8px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.topsxema-budget-edit-btn:active {
+  transform: scale(0.97);
+  background: rgba(14, 165, 233, 0.2);
+  border-color: rgba(14, 165, 233, 0.45);
+  color: #fff;
+}
+
+/* Admin panelga doimiy kirish tugmasi */
+.topsxema-admin-fab {
+  position: fixed;
+  top: 62px;
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(139, 92, 246, 0.28));
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 96;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+.topsxema-admin-fab:active {
+  transform: scale(0.93);
+}
+
+/* G'olib kartasi — yashirilish vaqti va ixcham holat */
+.portals-winner-hide-timer {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 6px 12px;
+}
+
+.portals-winner-collapsed {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.portals-winner-collapsed-icon {
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+}
+
+.portals-winner-collapsed-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.portals-winner-collapsed-text b {
+  font-size: 13.5px;
+  color: #fff;
+}
+
+.portals-winner-collapsed-text span {
+  font-size: 11.5px;
+  color: #94a3b8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Yutuq (sovg'a) rasmi */
+.portals-prize-photo-wrap {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  margin-bottom: 14px;
+  background: #0b0d15;
+}
+
+.portals-prize-photo {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.portals-prize-banner-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.portals-prize-banner-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Admin panel — auksion ro'yxati */
+.topsxema-admin-icon-btn {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.topsxema-admin-icon-btn:active {
+  transform: scale(0.93);
+}
+
+.topsxema-admin-auc-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.topsxema-admin-auc-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fbbf24;
+  overflow: hidden;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.topsxema-admin-auc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.topsxema-admin-auc-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.topsxema-admin-auc-name {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topsxema-admin-auc-sub {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topsxema-admin-auc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #cbd5e1;
+}
+
+.topsxema-admin-auc-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.topsxema-admin-auc-ends {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  font-size: 10.5px;
+  color: #64748b;
+}
+
+.topsxema-admin-auc-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.topsxema-admin-auc-badge {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  padding: 3px 9px;
+  border-radius: 8px;
+}
+
+.topsxema-admin-auc-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.topsxema-admin-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  border-radius: 9px;
+  padding: 5px 9px;
+  font-size: 10.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.topsxema-admin-mini-btn:active {
+  transform: scale(0.96);
+}
+
+.topsxema-admin-mini-btn.danger {
+  background: rgba(239, 68, 68, 0.14);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+.topsxema-admin-mini-btn.warn {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fcd34d;
+}
+
+/* Admin panel — byudjet ko'rsatkichlari */
+.topsxema-admin-budget-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.topsxema-admin-budget-cell {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.topsxema-admin-budget-cell span {
+  font-size: 10px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.topsxema-admin-budget-cell b {
+  font-size: 12.5px;
+  color: #fff;
+}
+
+/* Admin panel — yutuq rasmi */
+.topsxema-admin-photo-block {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.topsxema-admin-file-input {
+  width: 100%;
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+
+.topsxema-admin-file-input::file-selector-button {
+  background: rgba(14, 165, 233, 0.2);
+  border: 1px solid rgba(14, 165, 233, 0.4);
+  color: #7dd3fc;
+  border-radius: 9px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.topsxema-admin-photo-preview {
+  margin-top: 10px;
+  width: 100%;
+  max-height: 190px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Feedback chip ichidagi ikonlar */
+.topsxema-cat-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+
+/* ====================================================================
+   PATCH v3.9 — Player Cards Redesign + Admin Nav Fix + User Auction Nav
+   ==================================================================== */
+
+/* ---------- PLAYER CARDS REDESIGN ---------- */
+.portals-player-card {
+  display: flex !important;
+  flex-direction: column !important;
+  background: rgba(14, 16, 28, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 16px !important;
+  padding: 0 !important;
+  margin-bottom: 8px !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+.portals-player-card.is-leader {
+  border-color: rgba(255, 215, 0, 0.5) !important;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.12) !important;
+}
+.portals-player-card-main {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  padding: 10px 12px !important;
+}
+.portals-player-rank-badge {
+  width: 24px;
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
+  color: #64748b;
+  text-align: center;
+  margin-right: 8px;
+  line-height: 1;
+}
+.portals-player-rank-badge.is-gold { color: #ffd700; font-size: 16px; }
+.portals-player-rank-badge.is-silver { color: #c0c0c0; font-size: 16px; }
+.portals-player-rank-badge.is-bronze { color: #cd7f32; font-size: 16px; }
+.portals-player-avatar {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+  border: 2px solid rgba(255,255,255,0.18) !important;
+  margin-right: 10px !important;
+}
+.portals-player-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 50% !important;
+}
+.portals-player-details {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+.portals-player-name {
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.2 !important;
+}
+.portals-player-chance-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-top: 4px !important;
+}
+.portals-player-dot {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+}
+.portals-player-chance-row span:not(.portals-player-dot) {
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+}
+.portals-player-bid {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #fbbf24 !important;
+  white-space: nowrap !important;
+  margin-left: auto !important;
+  padding-left: 8px !important;
+  text-align: right !important;
+}
+.portals-player-progress-wrap {
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+}
+.portals-player-progress-fill {
+  height: 100%;
+  border-radius: 0 0 16px 16px;
+  transition: width 0.6s ease;
+  opacity: 0.8;
+}
+
+/* ---------- ADMIN NAV PILL — 4 COLUMNS FIX ---------- */
+.topsxema-admin-nav-pill {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+.topsxema-admin-nav-indicator {
+  width: calc((100% - 8px) / 4) !important;
+}
+
+/* ---------- USER AUCTION FLOATING BUTTON ---------- */
+#topsxema-user-auction-fab {
+  position: fixed;
+  bottom: max(80px, calc(env(safe-area-inset-bottom, 16px) + 72px));
+  right: 14px;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px 10px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.45), 0 0 0 1px rgba(255,255,255,0.1);
+  transition: transform 0.18s, box-shadow 0.18s;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
+#topsxema-user-auction-fab:active {
+  transform: scale(0.93);
+  box-shadow: 0 2px 10px rgba(14, 165, 233, 0.3);
+}
+#topsxema-user-auction-fab svg {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  flex-shrink: 0;
+}
+body.on-marketplace #topsxema-user-auction-fab {
+  display: none !important;
+}
+
+/* ---------- ACCOUNT SHARE BUTTON ---------- */
+.topsxema-account-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.28);
+  color: #38bdf8;
+  border-radius: 10px;
+  padding: 5px 11px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  margin-top: 6px;
+}
+.topsxema-account-share-btn:active {
+  background: rgba(14, 165, 233, 0.2);
+}
+.topsxema-account-share-btn svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+
+/* ================================================================
+   PATCH v4.0 — Arena UI redesign (Soqaliy-style player cards + UZS)
+   ================================================================ */
+
+/* ---- PLAYER CARDS — full redesign ---- */
+.portals-player-card {
+  display: flex !important;
+  flex-direction: column !important;
+  background: rgba(22, 24, 38, 0.95) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 18px !important;
+  padding: 0 !important;
+  margin-bottom: 10px !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35) !important;
+  transition: border-color 0.25s, box-shadow 0.25s !important;
+}
+.portals-player-card[data-rank="0"] {
+  border-color: rgba(255,215,0,0.45) !important;
+  background: linear-gradient(135deg, rgba(255,215,0,0.06), rgba(22,24,38,0.97)) !important;
+  box-shadow: 0 0 22px rgba(255,215,0,0.13), 0 2px 12px rgba(0,0,0,0.35) !important;
+}
+.portals-player-card-main {
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 14px !important;
+  gap: 0 !important;
+}
+
+/* Rank number/medal */
+.ppc-rank {
+  width: 26px;
+  flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1;
+  text-align: center;
+  margin-right: 10px;
+}
+
+/* Avatar */
+.ppc-avatar {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  color: #fff !important;
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+  border: 2.5px solid rgba(255,255,255,0.18) !important;
+  margin-right: 12px !important;
+  background: #1e2030 !important;
+  position: relative !important;
+}
+.ppc-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
+/* Crown on top of avatar for leader */
+.ppc-avatar-crown {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.9));
+  pointer-events: none;
+}
+
+/* Info block */
+.ppc-info {
+  flex: 1;
+  min-width: 0;
+}
+.ppc-name {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.2px !important;
+}
+.ppc-pct-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-top: 4px !important;
+}
+.ppc-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+}
+.ppc-pct-text {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  letter-spacing: -0.1px !important;
+}
+
+/* Amount — right side */
+.ppc-amount {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 3px !important;
+  margin-left: auto !important;
+  padding-left: 10px !important;
+}
+.ppc-amount-val {
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  color: #fbbf24 !important;
+  letter-spacing: -0.5px !important;
+  white-space: nowrap !important;
+}
+.ppc-amount-cur {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  letter-spacing: 0.2px !important;
+  text-transform: uppercase !important;
+}
+
+/* Progress bar at bottom of card */
+.ppc-bar {
+  height: 3px !important;
+  background: rgba(255,255,255,0.05) !important;
+  border-radius: 0 0 18px 18px !important;
+  overflow: hidden !important;
+}
+.ppc-bar-fill {
+  height: 100% !important;
+  border-radius: 0 0 18px 18px !important;
+  opacity: 0.7 !important;
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+/* Empty state */
+.ppc-empty {
+  text-align: center;
+  padding: 24px 16px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---- Players header ---- */
+.portals-players-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 6px 2px 10px !important;
+  margin-top: 4px !important;
+}
+.portals-players-title {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  color: #fff !important;
+  letter-spacing: -0.5px !important;
+}
+.portals-players-title span {
+  color: #64748b !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+.portals-game-id {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  letter-spacing: -0.2px !important;
+}
+
+/* ---- Quick preset chips — Soqaliy style ---- */
+.portals-dock-presets-row {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 7px !important;
+  padding: 6px 0 4px !important;
+}
+.portals-preset-chip {
+  background: rgba(30, 32, 50, 0.9) !important;
+  border: 1.5px solid rgba(255,255,255,0.1) !important;
+  color: #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 8px 4px !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  transition: all 0.15s !important;
+  -webkit-tap-highlight-color: transparent !important;
+  letter-spacing: -0.3px !important;
+}
+.portals-preset-chip:active {
+  background: rgba(14,165,233,0.2) !important;
+  border-color: rgba(14,165,233,0.5) !important;
+  color: #38bdf8 !important;
+  transform: scale(0.95) !important;
+}
+
+/* ---- Bid input ---- */
+.portals-amount-input {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  background: rgba(20,22,36,0.9) !important;
+  border: 1.5px solid rgba(255,255,255,0.12) !important;
+  border-radius: 14px !important;
+  padding: 11px 46px 11px 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  -moz-appearance: textfield !important;
+}
+.portals-amount-input:focus {
+  border-color: rgba(14,165,233,0.5) !important;
+  box-shadow: 0 0 0 3px rgba(14,165,233,0.1) !important;
+}
+.portals-amount-input::-webkit-inner-spin-button,
+.portals-amount-input::-webkit-outer-spin-button { -webkit-appearance: none !important; }
+
+.portals-uzs-tag {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #64748b !important;
+  pointer-events: none !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* ---- Bid button — Soqaliy green style ---- */
+.portals-bid-btn-green {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 14px !important;
+  padding: 12px 20px !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 4px 16px rgba(16,185,129,0.4) !important;
+  transition: all 0.15s !important;
+  -webkit-tap-highlight-color: transparent !important;
+  letter-spacing: -0.3px !important;
+}
+.portals-bid-btn-green:active {
+  transform: scale(0.95) !important;
+  box-shadow: 0 2px 8px rgba(16,185,129,0.3) !important;
+}
+.portals-bid-btn-green:disabled {
+  opacity: 0.5 !important;
+  transform: none !important;
+}
+
+/* ---- Balance chip ---- */
+.portals-balance-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  background: rgba(16,185,129,0.12) !important;
+  border: 1px solid rgba(16,185,129,0.3) !important;
+  border-radius: 999px !important;
+  padding: 5px 12px !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  color: #10b981 !important;
+}
+
+/* ---- Timer chip ---- */
+.portals-timer-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: rgba(239,68,68,0.12) !important;
+  border: 1px solid rgba(239,68,68,0.28) !important;
+  border-radius: 999px !important;
+  padding: 5px 12px !important;
+}
+.portals-timer-label {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: #ef4444 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+.portals-timer-val {
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  color: #fca5a5 !important;
+  letter-spacing: -0.3px !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+
+/* ================================================================
+   PATCH v4.1 — ppc-card player list (direct replace, Soqaliy style)
+   ================================================================ */
+.ppc-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(20,22,36,0.96);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 9px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  transition: border-color .25s, box-shadow .25s;
+}
+.ppc-card--leader {
+  border-color: rgba(255,215,0,.5) !important;
+  background: linear-gradient(135deg,rgba(255,215,0,.07),rgba(20,22,36,.98)) !important;
+  box-shadow: 0 0 24px rgba(255,215,0,.14), 0 2px 12px rgba(0,0,0,.35) !important;
+}
+.ppc-main {
+  display: flex;
+  align-items: center;
+  padding: 11px 13px;
+  gap: 0;
+}
+.ppc-rank {
+  width: 26px;
+  flex-shrink: 0;
+  font-size: 19px;
+  line-height: 1;
+  text-align: center;
+  margin-right: 8px;
+}
+.ppc-rank-num {
+  font-size: 11px !important;
+  font-weight: 800;
+  color: #475569;
+  line-height: 1.4;
+}
+.ppc-av {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255,255,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  flex-shrink: 0;
+  overflow: visible;
+  margin-right: 11px;
+}
+.ppc-av img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  overflow: hidden;
+}
+.ppc-crown {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  line-height: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,.8));
+  z-index: 2;
+}
+.ppc-info {
+  flex: 1;
+  min-width: 0;
+}
+.ppc-name {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  letter-spacing: -.2px;
+}
+.ppc-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+.ppc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.ppc-pct {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+.ppc-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  padding-left: 10px;
+  gap: 2px;
+}
+.ppc-amount {
+  font-size: 15px;
+  font-weight: 900;
+  color: #fbbf24;
+  white-space: nowrap;
+  letter-spacing: -.4px;
+}
+.ppc-cur {
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+.ppc-bar {
+  height: 3px;
+  background: rgba(255,255,255,.05);
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
+}
+.ppc-bar-fill {
+  height: 100%;
+  border-radius: 0 0 18px 18px;
+  opacity: .75;
+  transition: width .6s cubic-bezier(.4,0,.2,1);
+}
+.ppc-empty {
+  text-align: center;
+  padding: 28px 16px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+}

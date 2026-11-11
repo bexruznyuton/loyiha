@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>InstaTWA - Reels & Verification</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="/auction-ui.js?v=30"></script>
+    <script>(function(){try{localStorage.removeItem("ui_design")}catch(e){}document.documentElement.classList.remove("plain-ui")})();</script>
+    <style id="plain-ui-css">
+      [data-auc-target-card]{display:none!important} html[data-auc-mode="auc"] [data-auc-mkt-block] > :not([data-auc-nav]):not(#auc-root) { display: none !important; }
+      html.plain-ui{--glass-blur:none;--glass-bg:rgba(22,22,24,.94);--glass-bg-strong:rgba(28,28,31,.97);--glass-shadow:0 1px 3px rgba(0,0,0,.25);--glass-edge:none}
+      html.plain-ui *,html.plain-ui *::before,html.plain-ui *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+      html.plain-ui .rgb-border::before{animation:none!important}
+    
+      div[role="dialog"].fixed.top-\[50\%\].left-\[50\%\]{z-index:100!important;top:auto!important;bottom:var(--kb,0px)!important;left:0!important;right:0!important;--tw-translate-x:0!important;--tw-translate-y:0!important;translate:none!important;max-width:none!important;width:100%!important;height:auto!important;max-height:calc(100vh - var(--kb,0px) - 60px);overflow-y:auto;align-content:start;border-radius:26px 26px 0 0!important;border:1px solid rgba(255,255,255,.08)!important;border-bottom:none!important;padding:30px 18px calc(24px + env(safe-area-inset-bottom,0px))!important;background:var(--glass-bg-strong,rgba(18,18,20,.78))!important;-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);box-shadow:0 -12px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12)!important;animation:igSheetUp .32s cubic-bezier(.2,.8,.2,1)!important}
+      div[role="dialog"].fixed.top-\[50\%\].left-\[50\%\][data-state="closed"]{animation:igSheetDown .2s ease forwards!important}
+      div[role="dialog"].fixed.top-\[50\%\].left-\[50\%\]::before{content:"";position:absolute;top:10px;left:50%;width:44px;height:5px;margin-left:-22px;border-radius:5px;background:rgba(255,255,255,.28)}
+      html.kb-open div[role="dialog"].fixed.top-\[50\%\].left-\[50\%\]{padding-bottom:16px!important}
+      body:has(div[role="dialog"][data-state="open"]) .fixed.inset-x-0.z-\[90\]{display:none!important}
+      [data-auc-full] > .mx-auto.h-1{display:none!important}
+      [data-auc-full] > .flex.items-center.justify-between > button{display:none!important}
+      .fixed.inset-x-0.z-\[90\] > button,
+      .fixed.inset-x-0.z-\[90\] > div > button,
+      .fixed.inset-x-0.z-\[90\] > div > div{background:#1c1c1e!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:0 2px 10px rgba(0,0,0,.35)!important;border:1px solid rgba(255,255,255,.08)!important}
+      .fixed.inset-x-0.z-\[90\] > div > div > span[aria-hidden]{background:#2c2c2e!important;box-shadow:none!important;animation:none!important}
+      .fixed.inset-x-0.z-\[90\] .max-w-\[270px\]{min-width:170px}
+      @keyframes igSheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+      @keyframes igSheetDown{from{transform:translateY(0)}to{transform:translateY(100%)}}
+    
+      :root { --sheet-bg: #141416 !important; }
+      div[role="dialog"] p, .auc-sheet p, [data-auc-full] p, .auc-rules-h {
+        text-transform: none !important;
+        letter-spacing: normal !important;
+      }
+</style>
+    <script type="importmap">{"imports":{"/assets/Profile-B3T-1I_p.js":"/assets/Profile-B3T-1I_p.js?v=20261110e","/assets/Help-Boevb4sM.js":"/assets/Help-Boevb4sM.js?v=20261110e","/assets/Marketplace-BK1y4wmd.js":"/assets/Marketplace-BK1y4wmd.js?v=20261108c"}}</script>
+    <script type="module" crossorigin src="/assets/index-Daba99Q7.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CoBeJU2y.css">
+  <script>(function(){var vv=window.visualViewport;if(!vv)return;var de=document.documentElement;function u(){var kb=Math.max(0,Math.round(window.innerHeight-vv.height-vv.offsetTop));if(kb<80)kb=0;de.style.setProperty('--kb',kb+'px');de.classList.toggle('kb-open',kb>0);}vv.addEventListener('resize',u);vv.addEventListener('scroll',u);window.addEventListener('focusout',function(){setTimeout(u,250)});u();})();</script>
+    <!-- IOS-TOP-BOUNCE -->
+    <script>
+    (function(){
+      var tg=window.Telegram&&window.Telegram.WebApp;
+      var ios=(tg&&tg.platform==='ios')||/iPhone|iPad|iPod/.test(navigator.userAgent);
+      if(!ios)return;
+      var lastY=0,lastX=0;
+      function scrolledUp(el){
+        while(el&&el.nodeType===1){
+          if(el.scrollTop>0&&el.scrollHeight>el.clientHeight+1)return true;
+          el=el.parentElement;
+        }
+        var se=document.scrollingElement||document.documentElement;
+        return (window.scrollY||se.scrollTop||0)>0;
+      }
+      document.addEventListener('touchstart',function(e){if(e.touches.length===1){lastY=e.touches[0].clientY;lastX=e.touches[0].clientX}},{passive:true});
+      document.addEventListener('touchmove',function(e){
+        if(e.touches.length!==1)return;
+        var y=e.touches[0].clientY,x=e.touches[0].clientX,dy=y-lastY,dx=x-lastX;lastY=y;lastX=x;
+        if(dy<=0||Math.abs(dy)<=Math.abs(dx))return;
+        if(e.target.closest && e.target.closest('[role="dialog"], .auc-sheet, .auc-ov, .fixed, div[class*="overflow"]')) return;
+        if(scrolledUp(e.target))return;
+        if(e.cancelable)e.preventDefault();
+      },{passive:false});
+    })();
+    </script>
+    <!-- BG-PAINT -->
+    <script>
+    (function(){
+      function hex(c){var m=(c||'').match(/\d+(\.\d+)?/g);if(!m||m.length<3||(m.length>3&&+m[3]===0))return null;return '#'+[0,1,2].map(function(i){return ('0'+(+m[i]|0).toString(16)).slice(-2)}).join('')}
+      function paint(){
+        var el=document.querySelector('.bg-background')||document.body;var c=hex(getComputedStyle(el).backgroundColor);
+        if(!c)return;document.documentElement.style.backgroundColor=c;
+        var tg=window.Telegram&&window.Telegram.WebApp;if(tg){try{tg.setBackgroundColor&&tg.setBackgroundColor(c)}catch(e){}try{tg.setBottomBarColor&&tg.setBottomBarColor(c)}catch(e){}}
+      }
+      window.addEventListener('load',function(){setTimeout(paint,300);setTimeout(paint,1500)});
+    })();
+    </script>
+    <!-- TG-VIEW-FIX -->
+<style>
+*{scrollbar-width:none!important;-ms-overflow-style:none!important}
+*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+html,body,#root{overflow-x:hidden!important;max-width:100%!important}
+body.tg-full{padding-top:calc(var(--tg-safe-area-inset-top,0px) + var(--tg-content-safe-area-inset-top,0px));padding-bottom:var(--tg-safe-area-inset-bottom,0px)}
+</style>
+<script>
+(function(){var tg=window.Telegram&&window.Telegram.WebApp;if(!tg)return;tg.ready();
+var phone=(tg.platform==='android'||tg.platform==='ios')&&Math.min(screen.width,screen.height)<600;
+function go(){if(phone){tg.expand();if(tg.isVersionAtLeast&&tg.isVersionAtLeast('8.0')){try{tg.requestFullscreen()}catch(e){}document.body.classList.add('tg-full')}if(tg.disableVerticalSwipes)tg.disableVerticalSwipes()}else{if(tg.isFullscreen&&tg.exitFullscreen){try{tg.exitFullscreen()}catch(e){}}}}
+if(document.body)go();else document.addEventListener('DOMContentLoaded',go)})();
+</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+</head>
+
+  <body>
+    <div id="root"></div>
+
+  </body>
+</html>
