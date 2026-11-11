@@ -54,10 +54,30 @@ cd topsxema-redirect-bot
 php bot.php
 ```
 
+## Manba kodi holati (muhim)
+
+Serverda faqat **qurilgan (build) natijalar** saqlanib qolgan — asl `src/` papkalari
+yo'q. Shu sabab manba kod quyidagicha tiklandi:
+
+- `instacap-marketplace/server/` — 58 ta `.ts` fayl `dist/server/*.mjs.map`
+  sourcemap'lardan tiklandi va **hozir ishlab turgan** `dist/server/node-build.mjs`
+  hamda dinamik chunk'larga (bot-marketplace, tag-campaign, apify-reel, wallet,
+  auction) qarab moslashtirildi. `server/auction.mjs` — qo'lda yozilgan JS modul
+  (TS manbasi yo'q), `dist/server/auction.mjs` dan olingan.
+- `instacap-demo/server/` — 2026-10-25 sourcemap'dan tiklandi. Demo'ning
+  2026-11-03 build'i "Top Sxema" brendidagi alohida variant bo'lib, uning
+  sourcemap'i saqlanmagan — shuning uchun bu papkadagi kod demo build'ning
+  aynan nusxasi emas.
+- Frontend (React/TSX) manba kodi serverda umuman yo'q va sourcemap ham
+  saqlanmagan. `instacap-marketplace/dist/spa/` va `instacap-demo/dist/spa/`
+  ichida faqat minifikatsiya qilingan tayyor build bor.
+
 ## Repoga kirmagan narsalar
 
 - `node_modules/`, `venv/` — `pnpm install` / `pip install` bilan tiklanadi
-- `dist/`, `backups/` — build natijalari
+- `backups/`, `*.bak*`, `*.backup*` — eski nusxalar
 - `.env`, `.env.bak*` — maxfiy ma'lumotlar
 - `*.session` — Telegram sessiyalari
 - Ma'lumotlar bazasi dump'lari va holat fayllari
+
+`dist/` papkalari (qurilgan server va spa) deploy ishlashi uchun repoga qo'shilgan.
